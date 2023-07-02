@@ -18,11 +18,18 @@ export class CreateEmployeeComponent {
   }
 
   private saveEmployee(){
-    this.employeeService.createEmployee(this.employee).subscribe(data => {
-      console.log(data)
-      this.gotoEmployeeList();
-    },
-    error => console.log(error));
+    this.employeeService.createEmployee(this.employee).subscribe({
+      next: (v) =>  this.gotoEmployeeList(),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+  });
+
+
+    // this.employeeService.createEmployee(this.employee).subscribe(data => {
+    //   console.log(data)
+    //   this.gotoEmployeeList();
+    // },
+    // error => console.log(error));
   }
 
   gotoEmployeeList(){
